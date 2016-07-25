@@ -90,7 +90,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B2-G0-XuI">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1B2-G0-XuI">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,6 +162,14 @@
                                 <exclude reference="Ftn-nG-Sqc"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="96F-Gp-8cL"/>
+                                <exclude reference="eNe-ZC-RQZ"/>
+                                <exclude reference="sxW-Ar-xgK"/>
+                                <exclude reference="52K-bE-VQX"/>
+                                <exclude reference="Bkr-Ck-LAT"/>
+                                <exclude reference="TEt-VW-qUA"/>
+                                <exclude reference="fOA-qq-GEP"/>
+                                <exclude reference="oeh-uj-5R8"/>
                                 <exclude reference="EbO-ib-jpQ"/>
                                 <exclude reference="ekL-xI-dik"/>
                                 <exclude reference="zou-tr-OCt"/>
@@ -170,14 +178,6 @@
                                 <exclude reference="D8H-TX-vRo"/>
                                 <exclude reference="bDY-tY-kzP"/>
                                 <exclude reference="poG-ql-FVw"/>
-                                <exclude reference="52K-bE-VQX"/>
-                                <exclude reference="Bkr-Ck-LAT"/>
-                                <exclude reference="TEt-VW-qUA"/>
-                                <exclude reference="fOA-qq-GEP"/>
-                                <exclude reference="oeh-uj-5R8"/>
-                                <exclude reference="96F-Gp-8cL"/>
-                                <exclude reference="eNe-ZC-RQZ"/>
-                                <exclude reference="sxW-Ar-xgK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -189,6 +189,14 @@
                                 <include reference="Ftn-nG-Sqc"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="96F-Gp-8cL"/>
+                                <include reference="eNe-ZC-RQZ"/>
+                                <include reference="sxW-Ar-xgK"/>
+                                <include reference="52K-bE-VQX"/>
+                                <include reference="Bkr-Ck-LAT"/>
+                                <include reference="TEt-VW-qUA"/>
+                                <include reference="fOA-qq-GEP"/>
+                                <include reference="oeh-uj-5R8"/>
                                 <include reference="EbO-ib-jpQ"/>
                                 <include reference="ekL-xI-dik"/>
                                 <include reference="zou-tr-OCt"/>
@@ -197,14 +205,6 @@
                                 <include reference="D8H-TX-vRo"/>
                                 <include reference="bDY-tY-kzP"/>
                                 <include reference="poG-ql-FVw"/>
-                                <include reference="52K-bE-VQX"/>
-                                <include reference="Bkr-Ck-LAT"/>
-                                <include reference="TEt-VW-qUA"/>
-                                <include reference="fOA-qq-GEP"/>
-                                <include reference="oeh-uj-5R8"/>
-                                <include reference="96F-Gp-8cL"/>
-                                <include reference="eNe-ZC-RQZ"/>
-                                <include reference="sxW-Ar-xgK"/>
                             </mask>
                         </variation>
                     </view>

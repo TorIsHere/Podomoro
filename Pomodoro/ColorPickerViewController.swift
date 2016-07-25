@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class ColorPickerViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class ColorPickerViewController: UIViewController {
     @IBOutlet weak var color10: UIView!
     @IBOutlet weak var color11: UIView!
     @IBOutlet weak var color12: UIView!
+    
     
     @IBAction func onSelectColor(sender: UIButton) {
         print(sender.tag)
@@ -55,6 +57,8 @@ class ColorPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.bindingViewModel()
+        self.colorPickerViewModel.loadColorFromJSON()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,6 +78,52 @@ class ColorPickerViewController: UIViewController {
             }
         }
         
+    }
+    
+    func reloadColor() {
+        self.color1.backgroundColor = self.colorPickerViewModel.uiColors[0]
+        self.color2.backgroundColor = self.colorPickerViewModel.uiColors[1]
+        self.color3.backgroundColor = self.colorPickerViewModel.uiColors[2]
+        self.color4.backgroundColor = self.colorPickerViewModel.uiColors[3]
+        self.color5.backgroundColor = self.colorPickerViewModel.uiColors[4]
+        self.color6.backgroundColor = self.colorPickerViewModel.uiColors[5]
+        self.color7.backgroundColor = self.colorPickerViewModel.uiColors[6]
+        self.color8.backgroundColor = self.colorPickerViewModel.uiColors[7]
+        self.color9.backgroundColor = self.colorPickerViewModel.uiColors[8]
+        self.color10.backgroundColor = self.colorPickerViewModel.uiColors[9]
+        self.color11.backgroundColor = self.colorPickerViewModel.uiColors[10]
+        self.color12.backgroundColor = self.colorPickerViewModel.uiColors[11]
+    }
+    
+    func bindingViewModel() {
+        var colorViews = [color1, color2, color3, color4,
+                          color5, color6, color7, color8,
+                          color9, color10, color11, color12]
+        var uiColors = ["uiColor1", "uiColor2", "uiColor3", "uiColor4",
+                        "uiColor5", "uiColor6", "uiColor7", "uiColor8",
+                         "uiColor9", "uiColor10", "uiColor11", "uiColor12"]
+        
+        for count in 0..<colorViews.count {
+            
+            /*self.colorPickerViewModel.rac_valuesAndChangesForKeyPath(uiColors[count], options: NSKeyValueObservingOptions.New, observer: self.colorPickerViewModel).subscribeNext({ (next:AnyObject!) in
+                if let uiColor = next as? UIColor {
+                    colorViews[count].backgroundColor = uiColor
+                }
+            })*/
+            
+            self.colorPickerViewModel.rac_valuesForKeyPath(uiColors[count], observer: self.colorPickerViewModel).subscribeNext { [weak self] (next:AnyObject!) in
+                if let weakSelf = self {
+                    if let uiColor = next as? UIColor {
+                        colorViews[count].backgroundColor = uiColor
+                    }
+                }
+            }
+        }
+        self.colorPickerViewModel.rac_valuesForKeyPath("uiColors", observer: self.colorPickerViewModel).subscribeNext { [weak self] (next:AnyObject!) in
+            if let weakSelf = self {
+                weakSelf.reloadColor()
+            }
+        }
     }
     
     func inverseFlipAnimation() {
