@@ -29,12 +29,32 @@ class ColorPickerViewController: UIViewController {
         performSegueWithIdentifier("goToWatch", sender: self)
     }
     
+    @IBAction func unwindToColorPickerView(segue: UIStoryboardSegue) {
+    
+    }
+    
+    
     var colorPickerViewModel:ColorPickerViewModel = ColorPickerViewModel()
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        var token: dispatch_once_t = 0
+        dispatch_once(&token) { () -> Void in
+            self.inverseFlipAnimation()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        var token: dispatch_once_t = 0
+        dispatch_once(&token) { () -> Void in
+            self.initFlipAnimation()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        initFlipAnimation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +76,7 @@ class ColorPickerViewController: UIViewController {
         
     }
     
-    func initFlipAnimation() {
+    func inverseFlipAnimation() {
         let colorViewsSet1:[UIView] = [color1, color2, color3, color4]
         let colorViewsSet2:[UIView] = [color6]
         let colorViewsSet3:[UIView] = [color8, color9, color10, color11, color12]
@@ -69,18 +89,25 @@ class ColorPickerViewController: UIViewController {
         for colorView in colorViewsSet3 {
             colorView.transform = CGAffineTransformMakeScale(-1, 1)
         }
+    }
+    
+    
+    func initFlipAnimation() {
+        let colorViewsSet1:[UIView] = [color1, color2, color3, color4]
+        let colorViewsSet2:[UIView] = [color6]
+        let colorViewsSet3:[UIView] = [color8, color9, color10, color11, color12]
         
         UIView.animateWithDuration(0.7, animations: {
             for colorView in colorViewsSet1 {
                 colorView.transform = CGAffineTransformMakeScale(1, 1)
             }
         }) { (completed:Bool) in
-            UIView.animateWithDuration(0.7, animations: {
+            UIView.animateWithDuration(0.5, animations: {
                 for colorView in colorViewsSet2 {
                     colorView.transform = CGAffineTransformMakeScale(1, 1)
                 }
                 }, completion: { (completed:Bool) in
-                    UIView.animateWithDuration(0.7, animations: { 
+                    UIView.animateWithDuration(0.7, animations: {
                         for colorView in colorViewsSet3 {
                             colorView.transform = CGAffineTransformMakeScale(1, 1)
                         }

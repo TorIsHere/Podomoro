@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C4342B30EA5CF1E9FBDF8AD8AA622BAF719B7453",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C4342B30EA5CF1E9FBDF8AD8AA622BAF719B7453" : 0,
+    "D7FE7853A272440244E1EDC2CC77EF26AE96CB56" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CB874088-68AE-4B8A-BC3F-3BADAB653D86",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C4342B30EA5CF1E9FBDF8AD8AA622BAF719B7453" : "Pomodoro\/",
+    "D7FE7853A272440244E1EDC2CC77EF26AE96CB56" : "SwiftyProgressBar\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pomodoro",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pomodoro.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TorIsHere\/Podomoro.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C4342B30EA5CF1E9FBDF8AD8AA622BAF719B7453"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TorIsHere\/SwiftyProgressBar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D7FE7853A272440244E1EDC2CC77EF26AE96CB56"
+    }
+  ]
+}
