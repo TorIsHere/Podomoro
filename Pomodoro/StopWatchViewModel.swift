@@ -18,6 +18,7 @@ class StopWatchViewModel: NSObject {
     }
     
     dynamic var bgColor:UIColor!
+    dynamic var count:NSNumber!
     
     dynamic private(set) var appStateRaw: String?
     var appState : AppState? {

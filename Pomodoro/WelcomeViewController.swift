@@ -17,6 +17,11 @@ class WelcomeViewController: UIViewController {
     let PREFER_TEXT_SIZE:[CGFloat] = [64, 80, 96, 102]
     var prefertextSize:CGFloat = 32
     
+    
+    @IBAction func unwindToWelcomView(segue: UIStoryboardSegue) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

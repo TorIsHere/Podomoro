@@ -40,13 +40,13 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="primaryColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.63437467877619946" green="1" blue="0.83965643689361702" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.61863385320330599" green="0.8495077151326722" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
                                         <real key="value" value="20"/>
@@ -133,6 +133,13 @@
                                     </mask>
                                 </variation>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jI-wM-7Wl">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="play"/>
+                                <connections>
+                                    <action selector="onStart:" destination="d8S-Bz-24k" eventType="touchUpInside" id="6kw-8m-Tiu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20784313730000001" green="0.3921568627" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -141,6 +148,8 @@
                             <constraint firstItem="Ftn-nG-Sqc" firstAttribute="width" secondItem="Mmi-Fs-UKO" secondAttribute="width" id="Bkr-Ck-LAT"/>
                             <constraint firstItem="bAD-Fp-ChZ" firstAttribute="centerY" secondItem="3JK-eC-VI3" secondAttribute="centerY" id="D8H-TX-vRo"/>
                             <constraint firstItem="Mmi-Fs-UKO" firstAttribute="width" secondItem="3JK-eC-VI3" secondAttribute="width" multiplier="0.1" id="EbO-ib-jpQ"/>
+                            <constraint firstItem="3jI-wM-7Wl" firstAttribute="centerX" secondItem="3JK-eC-VI3" secondAttribute="centerX" id="MmQ-QL-RJv"/>
+                            <constraint firstItem="3jI-wM-7Wl" firstAttribute="top" secondItem="bAD-Fp-ChZ" secondAttribute="bottom" constant="20" id="PPp-w5-c6r"/>
                             <constraint firstItem="Ftn-nG-Sqc" firstAttribute="height" secondItem="Mmi-Fs-UKO" secondAttribute="height" id="TEt-VW-qUA"/>
                             <constraint firstItem="1B2-G0-XuI" firstAttribute="leading" secondItem="Mmi-Fs-UKO" secondAttribute="trailing" constant="20" id="Zx4-Fr-Zpz"/>
                             <constraint firstItem="bAD-Fp-ChZ" firstAttribute="centerX" secondItem="3JK-eC-VI3" secondAttribute="centerX" id="bDY-tY-kzP"/>
@@ -160,16 +169,9 @@
                                 <exclude reference="1B2-G0-XuI"/>
                                 <exclude reference="Mmi-Fs-UKO"/>
                                 <exclude reference="Ftn-nG-Sqc"/>
+                                <exclude reference="3jI-wM-7Wl"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="96F-Gp-8cL"/>
-                                <exclude reference="eNe-ZC-RQZ"/>
-                                <exclude reference="sxW-Ar-xgK"/>
-                                <exclude reference="52K-bE-VQX"/>
-                                <exclude reference="Bkr-Ck-LAT"/>
-                                <exclude reference="TEt-VW-qUA"/>
-                                <exclude reference="fOA-qq-GEP"/>
-                                <exclude reference="oeh-uj-5R8"/>
                                 <exclude reference="EbO-ib-jpQ"/>
                                 <exclude reference="ekL-xI-dik"/>
                                 <exclude reference="zou-tr-OCt"/>
@@ -178,6 +180,16 @@
                                 <exclude reference="D8H-TX-vRo"/>
                                 <exclude reference="bDY-tY-kzP"/>
                                 <exclude reference="poG-ql-FVw"/>
+                                <exclude reference="52K-bE-VQX"/>
+                                <exclude reference="Bkr-Ck-LAT"/>
+                                <exclude reference="TEt-VW-qUA"/>
+                                <exclude reference="fOA-qq-GEP"/>
+                                <exclude reference="oeh-uj-5R8"/>
+                                <exclude reference="96F-Gp-8cL"/>
+                                <exclude reference="eNe-ZC-RQZ"/>
+                                <exclude reference="sxW-Ar-xgK"/>
+                                <exclude reference="MmQ-QL-RJv"/>
+                                <exclude reference="PPp-w5-c6r"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -187,16 +199,9 @@
                                 <include reference="1B2-G0-XuI"/>
                                 <include reference="Mmi-Fs-UKO"/>
                                 <include reference="Ftn-nG-Sqc"/>
+                                <include reference="3jI-wM-7Wl"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="96F-Gp-8cL"/>
-                                <include reference="eNe-ZC-RQZ"/>
-                                <include reference="sxW-Ar-xgK"/>
-                                <include reference="52K-bE-VQX"/>
-                                <include reference="Bkr-Ck-LAT"/>
-                                <include reference="TEt-VW-qUA"/>
-                                <include reference="fOA-qq-GEP"/>
-                                <include reference="oeh-uj-5R8"/>
                                 <include reference="EbO-ib-jpQ"/>
                                 <include reference="ekL-xI-dik"/>
                                 <include reference="zou-tr-OCt"/>
@@ -205,6 +210,16 @@
                                 <include reference="D8H-TX-vRo"/>
                                 <include reference="bDY-tY-kzP"/>
                                 <include reference="poG-ql-FVw"/>
+                                <include reference="52K-bE-VQX"/>
+                                <include reference="Bkr-Ck-LAT"/>
+                                <include reference="TEt-VW-qUA"/>
+                                <include reference="fOA-qq-GEP"/>
+                                <include reference="oeh-uj-5R8"/>
+                                <include reference="96F-Gp-8cL"/>
+                                <include reference="eNe-ZC-RQZ"/>
+                                <include reference="sxW-Ar-xgK"/>
+                                <include reference="MmQ-QL-RJv"/>
+                                <include reference="PPp-w5-c6r"/>
                             </mask>
                         </variation>
                     </view>
@@ -1112,5 +1127,6 @@
         <image name="Circled Chevron Right" width="50" height="50"/>
         <image name="info" width="64" height="64"/>
         <image name="left-arrow" width="64" height="64"/>
+        <image name="play" width="64" height="64"/>
     </resources>
 </document>

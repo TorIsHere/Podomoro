@@ -38,18 +38,19 @@ class ColorPickerViewController: UIViewController {
     
     var colorPickerViewModel:ColorPickerViewModel = ColorPickerViewModel()
     
+    static var onceTokenInverse: dispatch_once_t = 0
+    static var onceTokenFlip: dispatch_once_t = 0
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        var token: dispatch_once_t = 0
-        dispatch_once(&token) { () -> Void in
+        dispatch_once(&ColorPickerViewController.onceTokenInverse) { () -> Void in
             self.inverseFlipAnimation()
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        var token: dispatch_once_t = 0
-        dispatch_once(&token) { () -> Void in
+        dispatch_once(&ColorPickerViewController.onceTokenFlip) { () -> Void in
             self.initFlipAnimation()
         }
     }
@@ -104,21 +105,15 @@ class ColorPickerViewController: UIViewController {
                          "uiColor9", "uiColor10", "uiColor11", "uiColor12"]
         
         for count in 0..<colorViews.count {
-            
-            /*self.colorPickerViewModel.rac_valuesAndChangesForKeyPath(uiColors[count], options: NSKeyValueObservingOptions.New, observer: self.colorPickerViewModel).subscribeNext({ (next:AnyObject!) in
-                if let uiColor = next as? UIColor {
-                    colorViews[count].backgroundColor = uiColor
-                }
-            })*/
-            
             self.colorPickerViewModel.rac_valuesForKeyPath(uiColors[count], observer: self.colorPickerViewModel).subscribeNext { [weak self] (next:AnyObject!) in
-                if let weakSelf = self {
+                if let _ = self {
                     if let uiColor = next as? UIColor {
                         colorViews[count].backgroundColor = uiColor
                     }
                 }
             }
         }
+        
         self.colorPickerViewModel.rac_valuesForKeyPath("uiColors", observer: self.colorPickerViewModel).subscribeNext { [weak self] (next:AnyObject!) in
             if let weakSelf = self {
                 weakSelf.reloadColor()

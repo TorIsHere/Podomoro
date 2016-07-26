@@ -12,7 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var localNotification: UILocalNotification?
+    var timeOutInSecond: Int?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,10 +28,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        if let timeOutInSecond = timeOutInSecond where timeOutInSecond > 0 {
+            localNotification = UILocalNotification()
+        
+            let now:NSDate            = NSDate()
+            let secondToAdd:Int       = timeOutInSecond//NSUserDefaults.standardUserDefaults().integerForKey("timeOutSecond")
+            let targetDateTime:NSDate = now.dateByAddingTimeInterval(NSTimeInterval(secondToAdd))
+        
+            localNotification!.fireDate = targetDateTime
+            localNotification!.timeZone = NSTimeZone.defaultTimeZone()
+            localNotification!.alertBody = "Sprint End!! Take a break"
+        
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification!)
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        if let localNotification = self.localNotification {
+            UIApplication.sharedApplication().cancelLocalNotification(localNotification)
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
