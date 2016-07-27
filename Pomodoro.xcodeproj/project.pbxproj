@@ -24,6 +24,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		963B671B1D486AAF00C53D2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 963B67161D486AAF00C53D2C /* SwiftyProgressBar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96139EA61D0B501B00F4625F;
+			remoteInfo = SwiftyProgressBar;
+		};
+		963B671D1D486AAF00C53D2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 963B67161D486AAF00C53D2C /* SwiftyProgressBar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96139EB01D0B501B00F4625F;
+			remoteInfo = SwiftyProgressBarTests;
+		};
 		968A2AEA1D44AC4D007BBBCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 968A2ACD1D44AC4D007BBBCB /* Project object */;
@@ -43,6 +57,7 @@
 /* Begin PBXFileReference section */
 		3C5462F7E7C2467B2C042C64 /* Pods_Pomodoro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pomodoro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCC8D454995EAB9DF6845C2 /* Pods-Pomodoro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro/Pods-Pomodoro.debug.xcconfig"; sourceTree = "<group>"; };
+		963B67161D486AAF00C53D2C /* SwiftyProgressBar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyProgressBar.xcodeproj; path = ../SwiftyProgressBar/SwiftyProgressBar.xcodeproj; sourceTree = "<group>"; };
 		9669D4651D44D5D3003563DB /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		9669D4691D44EFB1003563DB /* StopWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
 		9669D46B1D44EFC9003563DB /* StopWatchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
@@ -108,9 +123,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		963B67171D486AAF00C53D2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				963B671C1D486AAF00C53D2C /* SwiftyProgressBar.framework */,
+				963B671E1D486AAF00C53D2C /* SwiftyProgressBar.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		968A2ACC1D44AC4D007BBBCB = {
 			isa = PBXGroup;
 			children = (
+				963B67161D486AAF00C53D2C /* SwiftyProgressBar.xcodeproj */,
 				968A2AD71D44AC4D007BBBCB /* Pomodoro */,
 				968A2AEC1D44AC4D007BBBCB /* PomodoroTests */,
 				968A2AF71D44AC4D007BBBCB /* PomodoroUITests */,
@@ -292,6 +317,12 @@
 			mainGroup = 968A2ACC1D44AC4D007BBBCB;
 			productRefGroup = 968A2AD61D44AC4D007BBBCB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 963B67171D486AAF00C53D2C /* Products */;
+					ProjectRef = 963B67161D486AAF00C53D2C /* SwiftyProgressBar.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				968A2AD41D44AC4D007BBBCB /* Pomodoro */,
@@ -300,6 +331,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		963B671C1D486AAF00C53D2C /* SwiftyProgressBar.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyProgressBar.framework;
+			remoteRef = 963B671B1D486AAF00C53D2C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		963B671E1D486AAF00C53D2C /* SwiftyProgressBar.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftyProgressBar.xctest;
+			remoteRef = 963B671D1D486AAF00C53D2C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		968A2AD31D44AC4D007BBBCB /* Resources */ = {

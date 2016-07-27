@@ -44,6 +44,7 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = stopWatchViewModel.bgColor
         self.progressView.startAngle = -90
         self.progressView.endAngle = -90
+        self.progressView.bgColor = UIColor.clearColor()
         self.progressView.primaryColor = UIColor.whiteColor()
         self.progressView.secondaryColor = UIColor.whiteColor()
         
@@ -80,11 +81,10 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                         weakSelf.currentTaskLabel.text = weakSelf.taskInput.text!
                         weakSelf.currentTaskLabel.hidden = false
                         weakSelf.progressView.hidden = false
-                        weakSelf.progressView.setProgress(100, duration: 1)
                         weakSelf.taskInput.hidden = true
                         break
                     case .taskCountDown:
-                        weakSelf.stopWatchViewModel.count = 25 * 60
+                        weakSelf.stopWatchViewModel.count = 0
                         weakSelf.startTimemer()
                         break
                     default:
@@ -98,8 +98,8 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                 if let count = next as? Int {
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.timeOutInSecond = count
-                    weakSelf.timeNumber.text = String(Int(count/60))
-                    weakSelf.progressView.setProgress(CGFloat(count)/60 / 25, duration: 0.1)//.animate(CGFloat(count)/60 / 25, duration: 0.1)
+                    weakSelf.timeNumber.text = String(25 - Int(count/60))
+                    weakSelf.progressView.setProgress( CGFloat(count) * 100 / (60 * 25), duration: 0.1)//.animate(CGFloat(count)/60 / 25, duration: 0.1)
                 }
             }
         }
@@ -111,7 +111,7 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func countdown() {
-        self.stopWatchViewModel.count = NSNumber(int: self.stopWatchViewModel.count.intValue - 1)
+        self.stopWatchViewModel.count = NSNumber(int: self.stopWatchViewModel.count.intValue + 1)
     }
 
 }
