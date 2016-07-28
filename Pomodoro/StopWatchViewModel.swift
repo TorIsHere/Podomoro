@@ -12,13 +12,17 @@ class StopWatchViewModel: NSObject {
     
     enum AppState : String {
         case waitInput = "waitInput"
-        case taskInPuted = "taskInPuted"
+        case inputComplete = "inputComplete"
         case taskCountDown = "taskCountDown"
+        case pauseCountDown = "pauseCountDown"
+        case sprintEnd = "sprintEnd"
         case restCountDown = "restCountDown"
+        case pauseRestCountDown = "pauseRestCountDown"
     }
     
     dynamic var bgColor:UIColor!
     dynamic var count:NSNumber!
+    dynamic var sprintCount:NSNumber!
     
     dynamic private(set) var appStateRaw: String?
     var appState : AppState? {
@@ -26,8 +30,6 @@ class StopWatchViewModel: NSObject {
             appStateRaw = appState?.rawValue
         }
     }
-    
-    
     
     override init() {
         super.init()

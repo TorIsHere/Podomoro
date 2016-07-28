@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 import ReactiveCocoa
 import SwiftyProgressBar
 
@@ -17,14 +18,43 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timeNumber: UILabel!
     @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var actionLabel: UILabel!
+    
+    
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var infoView: UIVisualEffectView!
     
     @IBAction func onStart(sender: AnyObject) {
-        if self.stopWatchViewModel.appState == .taskInPuted {
+        if self.stopWatchViewModel.appState == .inputComplete || self.stopWatchViewModel.appState == .pauseCountDown {
             self.stopWatchViewModel.appState  = .taskCountDown
+        }
+        
+        if self.stopWatchViewModel.appState  == .pauseRestCountDown {
+            self.stopWatchViewModel.appState = .restCountDown
+        }
+    }
+    
+    @IBAction func onInfo(sender: AnyObject) {
+        self.infoView.hidden = false
+    }
+    
+    @IBAction func onCloseInfo(sender: AnyObject) {
+        self.infoView.hidden = true
+    }
+    
+    @IBAction func onPause(sender: AnyObject) {
+        if self.stopWatchViewModel.appState  == .taskCountDown {
+            self.stopWatchViewModel.appState = .pauseCountDown
+        }
+        if self.stopWatchViewModel.appState  == .restCountDown {
+            self.stopWatchViewModel.appState = .pauseRestCountDown
         }
     }
     
     var stopWatchViewModel:StopWatchViewModel = StopWatchViewModel()
+    var timer:NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +74,7 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = stopWatchViewModel.bgColor
         self.progressView.startAngle = -90
         self.progressView.endAngle = -90
-        self.progressView.bgColor = UIColor.clearColor()
+        self.progressView.bgColor = UIColor.grayColor()
         self.progressView.primaryColor = UIColor.whiteColor()
         self.progressView.secondaryColor = UIColor.whiteColor()
         
@@ -66,7 +96,7 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if let _ = self.taskInput.text {
             self.taskInput.resignFirstResponder()
-            self.stopWatchViewModel.appState = .taskInPuted
+            self.stopWatchViewModel.appState = .inputComplete
         }
         
         return false
@@ -77,19 +107,64 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
             if let weakSelf = self {
                 if let appState = weakSelf.stopWatchViewModel.appState {
                     switch appState {
-                    case .taskInPuted:
+                    case .waitInput:
+                        weakSelf.currentTaskLabel.hidden    = true
+                        weakSelf.progressView.hidden        = true
+                        weakSelf.startButton.hidden         = true
+                        weakSelf.pauseButton.hidden         = true
+                        weakSelf.actionLabel.hidden         = true
+                        weakSelf.taskInput.hidden           = false
+                        break
+                    case .inputComplete:
+                        weakSelf.currentTaskLabel.hidden    = false
+                        weakSelf.progressView.hidden        = false
+                        weakSelf.startButton.hidden         = false
+                        weakSelf.pauseButton.hidden         = true
+                        weakSelf.taskInput.hidden           = true
+                        weakSelf.actionLabel.hidden         = true
+                        weakSelf.stopWatchViewModel.count = 0
                         weakSelf.currentTaskLabel.text = weakSelf.taskInput.text!
-                        weakSelf.currentTaskLabel.hidden = false
-                        weakSelf.progressView.hidden = false
-                        weakSelf.taskInput.hidden = true
                         break
                     case .taskCountDown:
-                        weakSelf.stopWatchViewModel.count = 0
+                        weakSelf.currentTaskLabel.hidden    = false
+                        weakSelf.progressView.hidden        = false
+                        weakSelf.startButton.hidden         = true
+                        weakSelf.pauseButton.hidden         = false
+                        weakSelf.taskInput.hidden           = true
+                        weakSelf.actionLabel.hidden         = false
+                        weakSelf.actionLabel.text = "GO!!"
                         weakSelf.startTimemer()
                         break
-                    default:
+                    case .pauseCountDown:
+                        weakSelf.currentTaskLabel.hidden    = false
+                        weakSelf.progressView.hidden        = false
+                        weakSelf.startButton.hidden         = false
+                        weakSelf.pauseButton.hidden         = true
+                        weakSelf.taskInput.hidden           = true
+                        weakSelf.actionLabel.hidden         = true
                         break
-                    }
+                    case .sprintEnd:
+                        weakSelf.stopWatchViewModel.count = 0
+                        weakSelf.stopWatchViewModel.appState = .restCountDown
+                        break
+                    case .restCountDown:
+                        weakSelf.currentTaskLabel.hidden    = false
+                        weakSelf.progressView.hidden        = false
+                        weakSelf.startButton.hidden         = true
+                        weakSelf.pauseButton.hidden         = false
+                        weakSelf.taskInput.hidden           = true
+                        weakSelf.actionLabel.hidden         = false
+                        weakSelf.actionLabel.text           = "Take a break!!"
+                        weakSelf.startTimemer()
+                        break
+                    case .pauseRestCountDown:
+                        weakSelf.currentTaskLabel.hidden    = false
+                        weakSelf.progressView.hidden        = false
+                        weakSelf.startButton.hidden         = false
+                        weakSelf.pauseButton.hidden         = true
+                        weakSelf.taskInput.hidden           = true
+                        weakSelf.actionLabel.hidden         = true
+                        break                    }
                 }
             }
         }
@@ -99,7 +174,18 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.timeOutInSecond = count
                     weakSelf.timeNumber.text = String(25 - Int(count/60))
-                    weakSelf.progressView.setProgress( CGFloat(count) * 100 / (60 * 25), duration: 0.1)//.animate(CGFloat(count)/60 / 25, duration: 0.1)
+                    weakSelf.progressView.setProgress( CGFloat(count) * 100 / (60 * 25), duration: 0.1)
+                    if count == 25 * 60 {
+                        if weakSelf.stopWatchViewModel.appState == .taskCountDown {
+                            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                            weakSelf.stopWatchViewModel.appState = .sprintEnd
+                        }
+                    } else if count == 5 * 60 {
+                        if weakSelf.stopWatchViewModel.appState == .restCountDown {
+                            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                            weakSelf.stopWatchViewModel.appState = .taskCountDown
+                        }
+                    }
                 }
             }
         }
@@ -107,11 +193,15 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func startTimemer() {
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(StopWatchViewController.countdown), userInfo: nil, repeats: true)
+        if self.timer == nil {
+            NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(StopWatchViewController.countdown), userInfo: nil, repeats: true)
+        }
     }
     
     func countdown() {
-        self.stopWatchViewModel.count = NSNumber(int: self.stopWatchViewModel.count.intValue + 1)
+        if self.stopWatchViewModel.appState == .taskCountDown || self.stopWatchViewModel.appState == .restCountDown {
+            self.stopWatchViewModel.count = NSNumber(int: self.stopWatchViewModel.count.intValue + 1)
+        }
     }
 
 }
