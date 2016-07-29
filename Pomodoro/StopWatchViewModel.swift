@@ -18,6 +18,7 @@ class StopWatchViewModel: NSObject {
         case sprintEnd = "sprintEnd"
         case restCountDown = "restCountDown"
         case pauseRestCountDown = "pauseRestCountDown"
+        case restEnd = "restEnd"
     }
     
     dynamic var bgColor:UIColor!

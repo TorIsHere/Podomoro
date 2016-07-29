@@ -54,6 +54,7 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
     }
     
     var stopWatchViewModel:StopWatchViewModel = StopWatchViewModel()
+    var targetTime:Int = 25
     var timer:NSTimer!
     
     override func viewDidLoad() {
@@ -122,7 +123,8 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                         weakSelf.pauseButton.hidden         = true
                         weakSelf.taskInput.hidden           = true
                         weakSelf.actionLabel.hidden         = true
-                        weakSelf.stopWatchViewModel.count = 0
+                        weakSelf.stopWatchViewModel.count   = 0
+                        weakSelf.targetTime                 = 25
                         weakSelf.currentTaskLabel.text = weakSelf.taskInput.text!
                         break
                     case .taskCountDown:
@@ -144,8 +146,10 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                         weakSelf.actionLabel.hidden         = true
                         break
                     case .sprintEnd:
-                        weakSelf.stopWatchViewModel.count = 0
+                        weakSelf.stopWatchViewModel.count   = 0
+                        weakSelf.targetTime                 = 5
                         weakSelf.stopWatchViewModel.appState = .restCountDown
+                        weakSelf.progressView.erase()
                         break
                     case .restCountDown:
                         weakSelf.currentTaskLabel.hidden    = false
@@ -164,7 +168,19 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                         weakSelf.pauseButton.hidden         = true
                         weakSelf.taskInput.hidden           = true
                         weakSelf.actionLabel.hidden         = true
-                        break                    }
+                        break
+                    case .restEnd:
+                        weakSelf.currentTaskLabel.hidden    = false
+                        weakSelf.progressView.hidden        = false
+                        weakSelf.startButton.hidden         = true
+                        weakSelf.pauseButton.hidden         = false
+                        weakSelf.taskInput.hidden           = true
+                        weakSelf.actionLabel.hidden         = true
+                        weakSelf.stopWatchViewModel.count   = 0
+                        weakSelf.targetTime                 = 25
+                        weakSelf.stopWatchViewModel.appState = .taskCountDown
+                        break
+                    }
                 }
             }
         }
@@ -173,7 +189,10 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                 if let count = next as? Int {
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.timeOutInSecond = count
+                    
+                    
                     weakSelf.timeNumber.text = String(25 - Int(count/60))
+                    
                     weakSelf.progressView.setProgress( CGFloat(count) * 100 / (60 * 25), duration: 0.1)
                     if count == 25 * 60 {
                         if weakSelf.stopWatchViewModel.appState == .taskCountDown {
@@ -183,7 +202,7 @@ class StopWatchViewController: UIViewController, UITextFieldDelegate {
                     } else if count == 5 * 60 {
                         if weakSelf.stopWatchViewModel.appState == .restCountDown {
                             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                            weakSelf.stopWatchViewModel.appState = .taskCountDown
+                            weakSelf.stopWatchViewModel.appState = .restEnd
                         }
                     }
                 }
