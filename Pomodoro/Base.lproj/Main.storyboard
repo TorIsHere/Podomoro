@@ -23,9 +23,9 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAD-Fp-ChZ" customClass="CircularProgressView" customModule="SwiftyProgressBar">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MQt-rV-lFr">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MQt-rV-lFr">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="112"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="98"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -113,7 +113,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="thI-bh-YOf" kind="unwind" unwindAction="unwindToColorPickerView:" id="1rg-PD-mYI"/>
+                                    <action selector="onBack:" destination="d8S-Bz-24k" eventType="touchUpInside" id="lwN-d4-jxy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftn-nG-Sqc" userLabel="Info Button">
@@ -150,6 +150,12 @@
                                     <action selector="onPause:" destination="d8S-Bz-24k" eventType="touchUpInside" id="Pd9-NL-lvt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task 1 of 4  in sprint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OT-gT-11E">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GO!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeA-Ry-6fL">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
@@ -170,7 +176,7 @@
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oSf-QD-om3">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <string key="text">The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.[ The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. These intervals are named pomodoros, the plural in English of the Italian word pomodoro (tomato), after the tomato-shaped kitchen timer that Cirillo used as a university student. The method is based on the idea that frequent breaks can improve mental agility.
+                                            <mutableString key="text">The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.[ The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. These intervals are named pomodoros, the plural in English of the Italian word pomodoro (tomato), after the tomato-shaped kitchen timer that Cirillo used as a university student. The method is based on the idea that frequent breaks can improve mental agility.
 
 Closely related to concepts such as timeboxing and iterative and incremental development used in software design, the method has been adopted in pair programming contexts.   There are six stages in the technique:
 
@@ -179,7 +185,7 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
 3. Work on the task until the timer rings. If a distraction pops into your head, write it down, but immediately get back on task.
 4. After the timer rings, put a checkmark on a piece of paper.
 5. If you have fewer than four checkmarks, take a short break (3–5 minutes), then go to step 1.
-6. Else (i.e. after four pomodoros) take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.</string>
+6. Else (i.e. after four pomodoros) take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.</mutableString>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -260,7 +266,8 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                             <constraint firstItem="Ftn-nG-Sqc" firstAttribute="width" secondItem="Mmi-Fs-UKO" secondAttribute="width" id="Bkr-Ck-LAT"/>
                             <constraint firstItem="bAD-Fp-ChZ" firstAttribute="centerY" secondItem="3JK-eC-VI3" secondAttribute="centerY" id="D8H-TX-vRo"/>
                             <constraint firstItem="KeA-Ry-6fL" firstAttribute="top" secondItem="ZCe-m0-KoT" secondAttribute="bottom" constant="20" id="Dz9-xI-35m"/>
-                            <constraint firstItem="Mmi-Fs-UKO" firstAttribute="width" secondItem="3JK-eC-VI3" secondAttribute="width" multiplier="0.1" id="EbO-ib-jpQ"/>
+                            <constraint firstItem="Mmi-Fs-UKO" firstAttribute="width" secondItem="3JK-eC-VI3" secondAttribute="width" multiplier="0.08" id="EbO-ib-jpQ"/>
+                            <constraint firstItem="6OT-gT-11E" firstAttribute="top" secondItem="1B2-G0-XuI" secondAttribute="bottom" constant="50" id="Fnf-gZ-qCu"/>
                             <constraint firstItem="3jI-wM-7Wl" firstAttribute="centerX" secondItem="3JK-eC-VI3" secondAttribute="centerX" id="MmQ-QL-RJv"/>
                             <constraint firstItem="mqB-lb-Nkg" firstAttribute="leading" secondItem="3JK-eC-VI3" secondAttribute="leading" id="NnA-mH-75L"/>
                             <constraint firstItem="PA7-f5-qas" firstAttribute="top" secondItem="mqB-lb-Nkg" secondAttribute="bottom" id="NsC-ql-Hca"/>
@@ -270,6 +277,7 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                             <constraint firstItem="ZCe-m0-KoT" firstAttribute="trailing" secondItem="3jI-wM-7Wl" secondAttribute="trailing" id="Yc6-GQ-cif"/>
                             <constraint firstItem="ZCe-m0-KoT" firstAttribute="leading" secondItem="3jI-wM-7Wl" secondAttribute="leading" id="ZR7-TV-HZw"/>
                             <constraint firstItem="1B2-G0-XuI" firstAttribute="leading" secondItem="Mmi-Fs-UKO" secondAttribute="trailing" constant="20" id="Zx4-Fr-Zpz"/>
+                            <constraint firstItem="6OT-gT-11E" firstAttribute="centerX" secondItem="3JK-eC-VI3" secondAttribute="centerX" id="aoQ-YJ-TcR"/>
                             <constraint firstItem="bAD-Fp-ChZ" firstAttribute="centerX" secondItem="3JK-eC-VI3" secondAttribute="centerX" id="bDY-tY-kzP"/>
                             <constraint firstItem="mVP-S9-1vz" firstAttribute="leading" secondItem="3JK-eC-VI3" secondAttribute="leadingMargin" id="eNe-ZC-RQZ"/>
                             <constraint firstItem="Mmi-Fs-UKO" firstAttribute="top" secondItem="L9R-Qo-7H6" secondAttribute="bottom" constant="20" id="ekL-xI-dik"/>
@@ -295,16 +303,24 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                                 <exclude reference="Ftn-nG-Sqc"/>
                                 <exclude reference="3jI-wM-7Wl"/>
                                 <exclude reference="ZCe-m0-KoT"/>
+                                <exclude reference="6OT-gT-11E"/>
                                 <exclude reference="KeA-Ry-6fL"/>
                                 <exclude reference="mqB-lb-Nkg"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="NsC-ql-Hca"/>
-                                <exclude reference="96F-Gp-8cL"/>
-                                <exclude reference="eNe-ZC-RQZ"/>
-                                <exclude reference="sxW-Ar-xgK"/>
-                                <exclude reference="MmQ-QL-RJv"/>
-                                <exclude reference="PPp-w5-c6r"/>
+                                <exclude reference="NnA-mH-75L"/>
+                                <exclude reference="kvS-l6-6Ur"/>
+                                <exclude reference="qDM-Lu-FS1"/>
+                                <exclude reference="EbO-ib-jpQ"/>
+                                <exclude reference="ekL-xI-dik"/>
+                                <exclude reference="zou-tr-OCt"/>
+                                <exclude reference="Zx4-Fr-Zpz"/>
+                                <exclude reference="tc2-RZ-z0Z"/>
+                                <exclude reference="Fnf-gZ-qCu"/>
+                                <exclude reference="aoQ-YJ-TcR"/>
+                                <exclude reference="D8H-TX-vRo"/>
+                                <exclude reference="bDY-tY-kzP"/>
+                                <exclude reference="poG-ql-FVw"/>
                                 <exclude reference="52K-bE-VQX"/>
                                 <exclude reference="Bkr-Ck-LAT"/>
                                 <exclude reference="TEt-VW-qUA"/>
@@ -312,23 +328,18 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                                 <exclude reference="oeh-uj-5R8"/>
                                 <exclude reference="gV7-8L-3xS"/>
                                 <exclude reference="lJ8-kp-hc8"/>
-                                <exclude reference="EbO-ib-jpQ"/>
-                                <exclude reference="ekL-xI-dik"/>
-                                <exclude reference="zou-tr-OCt"/>
+                                <exclude reference="96F-Gp-8cL"/>
+                                <exclude reference="eNe-ZC-RQZ"/>
+                                <exclude reference="sxW-Ar-xgK"/>
+                                <exclude reference="MmQ-QL-RJv"/>
+                                <exclude reference="PPp-w5-c6r"/>
                                 <exclude reference="T1z-Fo-ETU"/>
                                 <exclude reference="Yc6-GQ-cif"/>
                                 <exclude reference="ZR7-TV-HZw"/>
                                 <exclude reference="vKW-DY-Bi5"/>
-                                <exclude reference="Zx4-Fr-Zpz"/>
-                                <exclude reference="tc2-RZ-z0Z"/>
                                 <exclude reference="Dz9-xI-35m"/>
                                 <exclude reference="vYd-JM-fVV"/>
-                                <exclude reference="D8H-TX-vRo"/>
-                                <exclude reference="bDY-tY-kzP"/>
-                                <exclude reference="poG-ql-FVw"/>
-                                <exclude reference="NnA-mH-75L"/>
-                                <exclude reference="kvS-l6-6Ur"/>
-                                <exclude reference="qDM-Lu-FS1"/>
+                                <exclude reference="NsC-ql-Hca"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -340,16 +351,24 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                                 <include reference="Ftn-nG-Sqc"/>
                                 <include reference="3jI-wM-7Wl"/>
                                 <include reference="ZCe-m0-KoT"/>
+                                <include reference="6OT-gT-11E"/>
                                 <include reference="KeA-Ry-6fL"/>
                                 <include reference="mqB-lb-Nkg"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="NsC-ql-Hca"/>
-                                <include reference="96F-Gp-8cL"/>
-                                <include reference="eNe-ZC-RQZ"/>
-                                <include reference="sxW-Ar-xgK"/>
-                                <include reference="MmQ-QL-RJv"/>
-                                <include reference="PPp-w5-c6r"/>
+                                <include reference="NnA-mH-75L"/>
+                                <include reference="kvS-l6-6Ur"/>
+                                <include reference="qDM-Lu-FS1"/>
+                                <include reference="EbO-ib-jpQ"/>
+                                <include reference="ekL-xI-dik"/>
+                                <include reference="zou-tr-OCt"/>
+                                <include reference="Zx4-Fr-Zpz"/>
+                                <include reference="tc2-RZ-z0Z"/>
+                                <include reference="Fnf-gZ-qCu"/>
+                                <include reference="aoQ-YJ-TcR"/>
+                                <include reference="D8H-TX-vRo"/>
+                                <include reference="bDY-tY-kzP"/>
+                                <include reference="poG-ql-FVw"/>
                                 <include reference="52K-bE-VQX"/>
                                 <include reference="Bkr-Ck-LAT"/>
                                 <include reference="TEt-VW-qUA"/>
@@ -357,23 +376,18 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                                 <include reference="oeh-uj-5R8"/>
                                 <include reference="gV7-8L-3xS"/>
                                 <include reference="lJ8-kp-hc8"/>
-                                <include reference="EbO-ib-jpQ"/>
-                                <include reference="ekL-xI-dik"/>
-                                <include reference="zou-tr-OCt"/>
+                                <include reference="96F-Gp-8cL"/>
+                                <include reference="eNe-ZC-RQZ"/>
+                                <include reference="sxW-Ar-xgK"/>
+                                <include reference="MmQ-QL-RJv"/>
+                                <include reference="PPp-w5-c6r"/>
                                 <include reference="T1z-Fo-ETU"/>
                                 <include reference="Yc6-GQ-cif"/>
                                 <include reference="ZR7-TV-HZw"/>
                                 <include reference="vKW-DY-Bi5"/>
-                                <include reference="Zx4-Fr-Zpz"/>
-                                <include reference="tc2-RZ-z0Z"/>
                                 <include reference="Dz9-xI-35m"/>
                                 <include reference="vYd-JM-fVV"/>
-                                <include reference="D8H-TX-vRo"/>
-                                <include reference="bDY-tY-kzP"/>
-                                <include reference="poG-ql-FVw"/>
-                                <include reference="NnA-mH-75L"/>
-                                <include reference="kvS-l6-6Ur"/>
-                                <include reference="qDM-Lu-FS1"/>
+                                <include reference="NsC-ql-Hca"/>
                             </mask>
                         </variation>
                     </view>
@@ -385,9 +399,11 @@ Closely related to concepts such as timeboxing and iterative and incremental dev
                         <outlet property="infoView" destination="mqB-lb-Nkg" id="G2B-ty-ihU"/>
                         <outlet property="pauseButton" destination="ZCe-m0-KoT" id="h2k-A3-sFr"/>
                         <outlet property="progressView" destination="bAD-Fp-ChZ" id="3Kg-dq-Xjj"/>
+                        <outlet property="sprintLabel" destination="6OT-gT-11E" id="Bc9-vl-QpP"/>
                         <outlet property="startButton" destination="3jI-wM-7Wl" id="s6l-Sj-F6M"/>
                         <outlet property="taskInput" destination="mVP-S9-1vz" id="kbm-TF-Vk2"/>
                         <outlet property="timeNumber" destination="MQt-rV-lFr" id="iDX-7Q-Jqh"/>
+                        <segue destination="thI-bh-YOf" kind="unwind" identifier="backToColorPicker" unwindAction="unwindToColorPickerView:" id="IuK-hJ-wNX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U6m-6g-Go3" userLabel="First Responder" sceneMemberID="firstResponder"/>

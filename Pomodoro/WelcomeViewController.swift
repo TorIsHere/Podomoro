@@ -36,8 +36,7 @@ class WelcomeViewController: UIViewController {
     }
     
     func configureView() {
-        print(UIDevice.myModelName() )
-        if UIDevice.myModelName() == "iPhone 4s" {
+        /*if UIDevice.myModelName() == "iPhone 4s" {
             prefertextSize = PREFER_TEXT_SIZE[0]
         } else if UIDevice.myModelName() == "iPhone 5" {
             prefertextSize = PREFER_TEXT_SIZE[1]
@@ -50,6 +49,16 @@ class WelcomeViewController: UIViewController {
         } else if UIDevice.myModelName() == "iPhone 6 Plus" {
             prefertextSize = PREFER_TEXT_SIZE[3]
         } else if UIDevice.myModelName() == "iPhone 6s Plus" {
+            prefertextSize = PREFER_TEXT_SIZE[3]
+        }*/
+        
+        if UIDevice.myScrennSize() == "3.5" {
+            prefertextSize = PREFER_TEXT_SIZE[0]
+        } else if UIDevice.myScrennSize() == "4.0"  {
+            prefertextSize = PREFER_TEXT_SIZE[1]
+        } else if UIDevice.myScrennSize() == "4.7"  {
+            prefertextSize = PREFER_TEXT_SIZE[2]
+        } else if UIDevice.myScrennSize() == "5.5"  {
             prefertextSize = PREFER_TEXT_SIZE[3]
         }
         

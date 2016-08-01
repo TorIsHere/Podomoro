@@ -27,9 +27,42 @@ extension UIColor {
         }
         return UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+    
+    func rgb() -> (CGFloat, CGFloat, CGFloat, CGFloat)? {
+        var fRed : CGFloat = 0
+        var fGreen : CGFloat = 0
+        var fBlue : CGFloat = 0
+        var fAlpha: CGFloat = 0
+        if self.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
+            return (fRed, fGreen, fBlue, fAlpha)
+        } else {
+            // Could not extract RGBA components:
+            return nil
+        }
+    }
 }
 
 extension UIDevice {
+    
+    class func myScrennSize() -> String? {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        if (screenWidth == 320 && screenHeight == 480) {
+            return "3.5"
+        } else if (screenWidth == 320 && screenHeight == 568) {
+            return "4.0"
+        } else if (screenWidth == 375 && screenHeight == 667) {
+            return "4.7"
+        
+        } else if (screenWidth == 414 && screenHeight == 736 ) {
+            return "5.5"
+        }
+        
+        return nil
+    
+    }
     
     class func myModelName() -> String {
         
